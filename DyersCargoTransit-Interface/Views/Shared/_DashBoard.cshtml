@@ -1,0 +1,118 @@
+﻿@{
+	ViewData["Title"] = "_DashBoard";
+}
+
+<nav class="dashboard close">
+	<!--------------->
+
+
+
+	<header>
+		<center>
+			<h5>Cargo Transit</h5>
+		</center>
+		<i class=' bx bx-chevron-left toggle'></i>
+	</header>
+
+
+	<div class="menu-bar">
+
+		<div class="menu">
+
+			<ul class="menu-links">
+				<!--ul-->
+
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+						<i class="bx bx-home-alt icon"></i>
+						<span class="text nav-text"> Home </span>
+					</a>
+				</li>
+
+				@*<li class="">
+					<a class="nav-link" asp-area="" asp-controller="CustomerShippment" asp-action="Index">
+						<i class="bx bx-user-circle icon"></i>
+						<span class="text nav-text"> Profile </span>
+					</a>
+				</li>*@
+
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="Customer" asp-action="Index">
+						<i class='bx bx-male-female icon'></i>
+						<span class="text nav-text"> Customers </span>
+					</a>
+				</li>
+
+
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="Cargo" asp-action="Index">
+
+						<i class="fa-solid fa-box-open icon"></i>
+
+						<span class="text nav-text"> Cargoes </span>
+					</a>
+				</li>
+
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="ShippingSchedule" asp-action="Index">
+
+						@*<i class="fa-regular fa-calendar-days icon"></i>*@
+						<i class="fa-regular fa-clock icon"></i>
+						<span class="text nav-text"> Schedules </span>
+					</a>
+				</li>
+
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="CustomerShippment" asp-action="Index">
+						<i class="fa-solid fa-ship icon"></i>
+						<span class="text nav-text"> Shippments</span>
+					</a>
+				</li>
+
+
+				
+
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="TruckRoute" asp-action="Index">
+						<i class="fa-solid fa-route icon"></i>
+						<span class="text nav-text"> Routes</span>
+					</a>
+				</li>
+				
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="Truck" asp-action="Index">
+						<i class="fa-solid fa-truck-moving icon"></i>
+
+						@*<i class="fa-solid fa-truck-front icon"></i>*@
+						<span class="text nav-text"> Trucks</span>
+					</a>
+				</li>
+
+
+				<li class="">
+					<a class="nav-link" asp-area="" asp-controller="" asp-action="">
+						<i class="bx bx-log-out icon"></i>
+						<span class="text nav-text"> Log Out </span>
+					</a>
+				</li>
+
+
+			</ul><!--ul-->
+		</div>
+	</div>
+
+
+
+
+
+
+	<center><h6 class="dash-footer">Dyer's Cargo Transit Dashboard</h6></center>
+	<hr />
+	<hr />
+	<hr />
+
+
+</nav> <!----------------------------->
+
+
+<script src="~/js/site.js"></script> <!--toggle function-->

@@ -1,0 +1,99 @@
+﻿@model DyersCargoTransit_Interface.Models.ViewModels.CargoVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<partial name="_DashBoard" />
+
+
+
+<div class="container row-cols-md-3  d-flex justify-content-center align-items-center ">
+
+    <form asp-action="Edit" class="Razor-Form">
+
+        <center><h3>Update Cargo</h3></center>
+
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        @*<div class="form-group">
+        <label asp-for="Id" class="control-label"></label>
+        <input asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+        </div>*@
+
+
+
+        <div class="form-group">
+            <label asp-for="CargoTypeId" class="control-label"></label>
+            <select asp-for="SelectedCargoTypeId" class="form-control" asp-items="@Model.CargoTypeList">
+                <option disabled selected> -- Select A Type -- </option>
+            </select>
+            <span asp-validation-for="SelectedCargoTypeId" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group">
+            <label asp-for="CargoDescription" class="control-label"></label>
+            <input asp-for="CargoDescription" class="form-control" />
+            <span asp-validation-for="CargoDescription" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="CargoWeight" class="control-label"></label>
+            <input asp-for="CargoWeight" class="form-control" />
+            <span asp-validation-for="CargoWeight" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CargoDimentions" class="control-label"></label>
+            <input asp-for="CargoDimentions" class="form-control" />
+            <span asp-validation-for="CargoDimentions" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CargoDestination" class="control-label"></label>
+            <input asp-for="CargoDestination" class="form-control" />
+            <span asp-validation-for="CargoDestination" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="CargoStatusId" class="control-label"></label>
+            <select asp-for="SelectedCargoStatusId" class="form-control" asp-items="@Model.CargoStatusList">
+                <option disabled selected> -- Select A Status  -- </option>
+            </select>
+            <span asp-validation-for="SelectedCargoStatusId" class="text-danger"></span>
+        </div>
+
+        <!--Button row-->
+        <div class="row mt-2">
+
+            <div class="form-group col-md-6 formBtn">
+                <input type="submit" value="Update Cargo" class="btn btn-primary w-100" />
+            </div>
+
+
+            <div class="form-group col-md-6 formBtn">
+                <a asp-action="Index" class="btn btn-dark w-100"> Back To List </a>
+            </div>
+        </div>
+
+    </form>
+
+</div><!---------------->
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

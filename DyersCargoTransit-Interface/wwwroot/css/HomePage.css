@@ -1,0 +1,260 @@
+﻿
+
+
+
+
+
+/*--------- Header -----*/
+/* dark purple blue - #430e9a*/
+.style-header {
+    background-color: #430e9a;
+    height: 70px;
+    margin-bottom: 45px;
+    /box-shadow: 1px 0px 7px 0 rgb(0, 0, 0);
+    box-shadow: 4px 2px 7px 4px #ffdaf1;
+}
+
+
+/*notused*/
+.logoBrand{
+    /position:absolute;
+    margin-left: -10px;
+    margin-top: -10px;
+    width:130px;
+}
+
+
+
+
+/*nav links*/
+.nav-head-link {
+    /background-color: white;
+    /color: #FF4778;
+    color:white;
+    text-decoration: none;
+    border-radius: 20px;
+    display: flex;
+    /align-content: center;
+    /justify-content: center;
+    font-size: 22px;
+    margin-left: 20px;
+    padding: 2px 10px 2px 10px;
+    /border: solid white 1px;
+}
+
+    .nav-head-link:hover {
+        color: white;
+        /background-color: #FF4778;
+        /box-shadow: 1px 1px 2px #FF4778;
+        box-shadow: 2px 1px 4px 1px #FF4778;
+        border: none;
+    }
+
+.loginLink {
+    position: absolute;
+    margin-left: 290px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 1px 4px 1px #FF4778;
+}
+.loginLink:hover {
+    background-color: #FF4778;
+}
+
+
+
+.BigImg1 {
+    //border: black solid 1px;
+    margin-left: -430px;
+    margin-top: -45px;
+}
+
+
+
+/*Footer*/
+
+.footer-style{
+    /background-color:#430e9a;
+    
+}
+
+
+
+
+footer {
+    background-color: #430e9a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    /height: 90px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  
+}
+
+
+
+
+
+
+
+
+
+
+/*---------------Home  Page  Container------------*/
+.Home-Container-On-BigImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /border: solid white 1px;
+    border-radius: 6px;
+    position: absolute;
+    width: 800px;
+    margin-left: 170px;
+    margin-top: 160px;
+    background-color: #050404a8;
+    height: 200px;
+    box-shadow: 1px 29px 500px 29px #05040473;
+}
+
+    .Home-Container-On-BigImage img {
+        height: 200px;
+        /width:250px;
+        /margin-top:30px;
+    }
+
+.LogoPic-In-Home-Container {
+    /height:20px;
+}
+
+.Home-Container-On-BigImage h1 {
+    font-size: 50px;
+    text-shadow: 2px 1px 1px black; /* Dark border effect */
+    /width:350px;
+    /border:solid black 1px;
+}
+
+.Home-Container-On-BigImage h3 {
+    font-size: 20px;
+    text-shadow: 0px 1px 1px black; /* Dark border effect */
+}
+
+
+
+
+.text-in-Home-Container {
+    color: white;
+    margin-left: 20px;
+}
+
+
+
+/*-----Red Buttons in container-------*/
+.HomeNavBtns {
+    display: flex;
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 145px;
+    width: 250px;
+    /height: 80px;
+    /height: 40px;
+    justify-content: space-evenly;
+    align-content:center;
+    border-radius: 5px;
+    /box-shadow: 5px 5px 10px 0 rgb(0, 0, 0);
+}
+
+.homePage-Btn {
+    /background-color: red;
+    /background-color: darkred;
+    background-color: #FF4778;
+    color: white;
+    text-decoration:none;
+    border-radius: 5px;
+    font-size: 14px;
+    /margin-left: 20px;
+    /padding: 2px 10px 2px 10px;
+    padding: 5px;
+}
+
+    .homePage-Btn:hover {
+        color: white;
+        /border: solid white 1px;
+        /background-color: red;
+        background-color: #ed164f;
+    }
+
+/*-----------------------------------------------------------------------------------*/
+
+/*-----------  VIDEO  -----------*/
+
+.HomeVideo-Container{
+    /border: solid black 3px;
+    width:1303px;
+    height:400px;
+    margin-left:-94px;
+    overflow:hidden;
+    
+}
+     /*video*/
+    .HomeVideo-Container iframe {
+        margin-left:0px;
+        margin-top: -210px;
+        height: 780px;
+        width: 1304px;
+    }
+
+
+
+
+/*-------------------------------SERVICES SECTION  -----------------------------*/
+
+.Service-Big-Container1 {
+    /border: solid black 2px;
+    border-radius: 12px;
+    display: flex;
+    /flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    color: black;
+    width: 1250px;
+    height: 300px;
+    margin-left: -70px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    /background-color: #4300c1;
+    
+}
+
+.Service-Img-Container {
+    /border: solid black 1px;
+    width: 500px;
+    height: 263px;
+    border-radius: 12px;
+    overflow: hidden;
+    /background-color: lightgray;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 3px;
+    /box-shadow: 5px 5px 10px 0 rgb(0, 0, 0);
+    /box-shadow: 1px 1px 8px 0 rgb(0, 0, 0);
+}
+
+    .Service-Img-Container img {
+        margin-left: 0px;
+        margin-top: 0px;
+        height: 300px;
+    }
+
+.Service-Text-Container {
+    /border: solid black 1px;
+    width: 600px;
+    height: 150px;
+    margin-left: -2px;
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+    border-radius: 12px;
+    box-shadow: 3px 3px 7px 0 rgb(0, 0, 0);
+}

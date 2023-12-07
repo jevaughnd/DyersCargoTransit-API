@@ -1,0 +1,52 @@
+cargo transit identity
+
+
+Manager Login
+--------------------
+{
+  "username": "manager@mail.com",
+  "password": "Password123$"
+}
+
+
+{
+  "status": "succes",
+  "message": "login succesfull",
+  "data": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJtYW5hZ2VyQG1haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDA4ODA3MjV9.mmbsBoXr0ZtCJVjunNWqK2mbnzdW1cIOembSR5wB0eTsIrzIkZatm1FdI8Pz1DHqNV5W-O0nNNAoHm7O9Km6QA"
+}
+---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Driver Login
+-----------
+
+{
+  "username": "driver@mail.com",
+  "password": "TruckerPa$$1"
+}
+
+{
+  "status": "succes",
+  "message": "login succesfull",
+  "data": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJkcml2ZXJAbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTcwMDg4MTA5MX0.mzhCJLxcm2VMY56cwjdueFtz77V3M0mTsT6GcAnMolgZvCEI0RHPVM8xNmGAANUCJiIVP6g_pPmds6KJ6wIyNw"
+}
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+SEED ROLE Admin:
+
+{
+    UserName = "admin",
+    Email = "admin@mail.com",
+};
+
+var createAdmin = await userManager.CreateAsync(admin, "Admin123%");
+
+
+
+

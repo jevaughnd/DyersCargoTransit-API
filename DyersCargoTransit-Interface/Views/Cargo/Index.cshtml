@@ -1,0 +1,106 @@
+﻿@model IEnumerable<DyersCargoTransit_Interface.Models.Cargo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_DashBoard" />
+
+<center>
+    <h2>Cargoes</h2>
+</center>
+
+
+<div class="table-container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CargoTypeId)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CargoDescription)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CargoWeight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CargoDimentions)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CargoDestination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CargoStatusId)
+                </th>
+                <th>
+                    <p>
+                        <a asp-action="Create" class="btn btn-sm btn-success">
+                            Create New
+                            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CargoType.CargoTypeName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CargoDescription)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CargoWeight)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CargoDimentions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CargoDestination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CargoStatus.CargoStatusName)
+                    </td>
+                    <td>
+                        <div class=" btn-group w-75">
+                            <!--Align buttons-->
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success">
+                                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                            </a>
+
+                            <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </a>
+
+
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div> <!--------------->
+
+
+

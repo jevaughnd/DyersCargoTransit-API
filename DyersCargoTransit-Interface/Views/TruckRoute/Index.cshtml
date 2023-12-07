@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DyersCargoTransit_Interface.Models.TruckRoute>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_DashBoard" />
+
+<center><h2>Truck Routes</h2></center>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingScheduleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TruckId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Waypoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedTime)
+            </th>
+            <th>
+                <p>
+                    <a asp-action="Create" class="btn btn-sm btn-success">
+                        New Truck Route
+                        <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                    </a>
+                </p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingScheduleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TruckId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Waypoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedTime)
+            </td>
+                <td>
+                    <div class=" btn-group w-75">
+                        <!--Align buttons-->
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success">
+                            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                        </a>
+
+                        <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

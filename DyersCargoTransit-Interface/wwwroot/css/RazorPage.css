@@ -1,0 +1,276 @@
+﻿
+
+
+.LoginForm {
+    position: absolute;
+    /border: solid goldenrod 2px;
+    /box-shadow: 3px 4px 30px 0 rgb(0, 0, 0);
+    /box-shadow: 1px 8px 100px 1px #FF4778;
+    box-shadow: 1px 29px 500px 29px #4300c138;
+    padding: 10px 30px 20px 30px;
+    width: 500px;
+    border-radius: 8px;
+    background-color: #06305e9e;
+    color: white;
+    font-size: 28px;
+    margin-top: 525px;
+    /margin-bottom:150px;
+    /margin-left: 80px;
+    text-shadow: 2px 1px 1px black; /* Dark border effect */
+}
+
+.loginBtn {
+    margin-top: 12px;
+}
+
+/*Customer Home*/
+.Become-A-Cus-Form {
+    position: absolute;
+    /border: solid goldenrod 2px;
+    /box-shadow: 3px 4px 30px 0 rgb(0, 0, 0);
+    /box-shadow: 1px 8px 100px 1px #FF4778;
+    box-shadow: 1px 29px 500px 29px #4300c138;
+    padding: 10px 30px 20px 30px;
+    /width: 500px;
+    border-radius: 4px;
+    background-color: #06305e9e;
+    color: white;
+    font-size: 20px;
+    margin-top: 499px;
+    /margin-bottom:150px;
+    margin-left: 40px;
+    text-shadow: 2px 1px 1px black; /* Dark border effect */
+}
+
+
+
+
+/* pink #FF4778*/
+
+/*purple blue - #4300c1*/
+
+
+
+
+
+/*------Forms----------*/
+
+.Razor-Form {
+    padding: 20px 20px 20px 20px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 6px 0px rgb(0, 0, 0);
+    font-size: 20px;
+    background-color: #4300c1;
+    color: white;
+}
+
+.formBtn {
+    margin-top: 12px;
+}
+
+
+
+
+/*--------------------- Table Styling ---------------------------*/
+
+
+/* Center the heading */
+h2 {
+    /text-align: center;
+    color:blue;
+}
+
+
+/* Style the container to enable horizontal scrolling */
+table-container {
+    width: 107%; /* Set a fixed width for the container */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    margin: 20px auto; /* Center the container */
+}
+
+
+/* Style the table */
+.table {
+    width: 107%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom:50px;
+    /box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 8px lightgrey;
+    
+    margin-left: 5px;
+}
+
+    /* Style the table header */
+    .table th {
+        background-color: #4300c1;
+        padding: 7px;
+        text-align: left;
+        color: white;
+
+       
+    }
+
+
+    /* Style the table body */
+    .table td {
+        padding: 7px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Apply a hover effect to table rows */
+    .table tr:hover {
+        /background-color: #f5f5f5;
+        /background-color: #ffa1ec;
+        background-color:#ffdaf1;
+    }
+
+/* Style the buttons in the button group */
+.btn-group a {
+    margin-right: 2px;
+}
+
+
+/*---------------------------------------------------------------------*/
+
+
+
+
+
+
+
+/*-------------------------     ABOUT US PAGE   ------------------------*/
+
+
+
+/*main*/
+.About-info-Container {
+    /border: solid black 2px;
+    border-radius: 12px;
+    display: flex;
+    /flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    color: black;
+    width: 1250px;
+    margin-left: -70px;
+    margin-top:-20px;
+    background-color: #4300c1;
+    box-shadow: 5px 5px 10px 0 rgb(0, 0, 0);
+}
+
+.About-Pic-Container {
+    /border: solid black 1px;
+    width: 570px;
+    height: 396px;
+    border-radius: 12px;
+    overflow: hidden;
+    /background-color: lightgray;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 3px;
+    /box-shadow: 5px 5px 10px 0 rgb(0, 0, 0);
+    /box-shadow: 1px 1px 8px 0 rgb(0, 0, 0);
+}
+
+
+    .About-Pic-Container img {
+        margin-left: 0px;
+        margin-top: 0px;
+        height: 405px;
+    }
+
+
+.AboutText-Container {
+    /border: solid black 1px;
+    width: 600px;
+    height: 400px;
+    margin-left: -2px;
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+    border-radius: 12px;
+    
+}
+
+
+.BigTextaboutTitle{
+    position:absolute;
+    color:white;
+    /margin-top:2px;
+    margin-left:500px;
+}
+
+
+
+/*-----------------------------------------------------------------------*/
+/*----------------CONTACT US SECTION -------------------------*/
+
+
+.contact-Title {
+    position: absolute;
+    color: white;
+    margin-top:2px;
+    margin-left: 500px;
+}
+
+.Contact-info-Container {
+    /border: solid black 2px;
+    border-radius: 12px;
+    display: flex;
+    /flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    color: black;
+    width: 1250px;
+    height: 230px;
+    margin-left: -70px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    background-color: #4300c1;
+    /box-shadow: 5px 5px 10px 0 rgb(0, 0, 0);
+    /box-shadow: 1px 2px 6px 1px rgb(0, 0, 0);
+}
+
+
+/*Not used*/
+.Contact-Pic-Container {
+    border: solid black 1px;
+    width: 570px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    /background-color: lightgray;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 3px;
+    /box-shadow: 5px 5px 10px 0 rgb(0, 0, 0);
+    /box-shadow: 1px 1px 8px 0 rgb(0, 0, 0);
+}
+
+    .Contact-Pic-Container img {
+        margin-left: 0px;
+        margin-top: 0px;
+        height: 100px;
+    }
+
+
+
+
+
+.Contact-Text-Container {
+    /border: solid black 1px;
+    width: 600px;
+    /height: 100px;
+    margin-left: -2px;
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+    border-radius: 12px;
+    box-shadow: 3px 3px 7px 0 rgb(0, 0, 0);
+}
+
+
+
+
+

@@ -1,0 +1,97 @@
+﻿@model DyersCargoTransit_Interface.Models.ViewModels.TruckRouteVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<partial name="_DashBoard" />
+
+<div class="container row-cols-md-2  d-flex justify-content-center align-items-center">
+
+    <form asp-action="Edit" class="Razor-Form">
+
+        <center>
+            <h3>Update Truck Route</h3>
+        </center>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @* <div class="form-group">
+        <label asp-for="Id" class="control-label"></label>
+        <input asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+        </div>*@
+
+
+
+        <div class="row mt-2">
+            <!---->
+            <div class="form-group col-md-6 ">
+                <label asp-for="ShippingScheduleId" class="control-label "></label>
+                <select asp-for="SelectedShippingScheduleId" class="form-control" asp-items="@Model.ShippingScheduleList">
+                    <option disabled selected> -- Schedules -- </option>
+                </select>
+                <span asp-validation-for="SelectedShippingScheduleId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="TruckId" class="control-label "></label>
+                <select asp-for="SelectedTruckId" class="form-control" asp-items="@Model.TruckList">
+                    <option disabled selected> -- Trucks -- </option>
+                </select>
+                <span asp-validation-for="SelectedTruckId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Waypoints" class="control-label"></label>
+            <input asp-for="Waypoints" class="form-control" />
+            <span asp-validation-for="Waypoints" class="text-danger"></span>
+        </div>
+
+
+        <div class="row mt-2">
+            <!--row-->
+
+            <div class="form-group col-md-6 ">
+                <label asp-for="Distance" class="control-label"></label>
+                <input asp-for="Distance" class="form-control" />
+                <span asp-validation-for="Distance" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6 ">
+                <label asp-for="EstimatedTime" class="control-label"></label>
+                <input asp-for="EstimatedTime" class="form-control" />
+                <span asp-validation-for="EstimatedTime" class="text-danger"></span>
+            </div>
+
+        </div>
+
+
+
+        <!--Button row-->
+        <div class="row mt-2">
+
+            <div class="form-group col-md-6 formBtn">
+                <input type="submit" value="Update Truck Route" class="btn btn-primary w-100" />
+            </div>
+
+
+            <div class="form-group col-md-6 formBtn">
+                <a asp-action="Index" class="btn btn-dark w-100"> Back To List </a>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

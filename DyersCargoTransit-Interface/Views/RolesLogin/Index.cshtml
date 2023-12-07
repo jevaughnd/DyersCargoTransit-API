@@ -1,0 +1,35 @@
+﻿@model DyersCargoTransit_Interface.Models.User
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container row-cols-md-3  d-flex justify-content-center align-items-center ">
+
+    <form asp-action="Index" class="LoginForm">
+
+        <center><h3>Roles Login</h3></center>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Username" class="control-label"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row-cols-md-1 loginBtn">
+            <input type="submit" value="Login" class="btn btn-primary" />
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

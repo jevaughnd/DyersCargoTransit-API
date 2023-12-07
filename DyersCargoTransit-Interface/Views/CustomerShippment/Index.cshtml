@@ -1,0 +1,93 @@
+﻿@model IEnumerable<DyersCargoTransit_Interface.Models.Customer_Shipment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<partial name="_DashBoard" />
+
+<center>
+    <div style="color: green;"> <h6>@ViewData["new-shipment"] </h6> </div>  <!--show succes massage-->
+    <div style="color: green;"> <h6>@ViewData["edited-shipment"] </h6> </div>  <!--show succes massage-->
+
+    <h2>Customer Shipments</h2>
+</center>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CargoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingScheduleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer_ShipmentStatusId)
+            </th>
+            <th>
+                <p>
+                    <a asp-action="Create" class="btn btn-sm btn-success">
+                        New Shipment
+                        <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                    </a>
+                </p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo.CargoDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingScheduleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer_ShipmentStatus.ShipmentStatusName)
+            </td>
+            
+
+
+                <td>
+                    <div class=" btn-group w-75">
+                        <!--Align buttons-->
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success">
+                            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                        </a>
+
+                        <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </td>
+
+
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    Make Sure Schedule Id matches Cargoes final destination
+</p>

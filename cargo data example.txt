@@ -1,0 +1,147 @@
+
+                                                                CARGO DATA
+
+| CargoTypeID  | TypeName         |
+|--------------|------------------|
+| 1            | Electronics      |
+| 2            | Perishable Goods |
+| 3            | Apparel          |
+| 4            | Machinery        |
+| 5            | Chemicals        |
+
+
+
+| CargoID | CargoName             | CargoDescription                   | CargoTypeID | Weight (lbs) | Dimensions   | Destination               | Status          |
+|---------|-----------------------|------------------------------------|-------------|--------------|--------------|---------------------------|-----------------|
+| 1       | Electronics Bundle    | Assorted electronic items          | 1           | 20           | N/A          | New York, USA             | In Transit      |
+| 2       | Fresh Produce Box     | Mix of fruits and veggies          | 2           | 40           | N/A          | London, UK                | In Transit      |
+| 3       | Clothing Assortment   | Variety of fashion items           | 3           | 30           | N/A          | Paris, France             | Delivered       |
+| 4       | Industrial Machine    | Heavy-duty manufacturing equipment | 4           | 8000         | 15x10x8      | Berlin, Germany           | In Customs      |
+| 5       | Laboratory Chemicals  | Assorted lab materials             | 5           | 150          | N/A          | Tokyo, Japan              | Pending Pickup  |
+| 6       | Smart Home Devices    | Latest smart home gadgets          | 1           | 10           | N/A          | San Francisco, USA        | In Transit      |
+| 7       | Fresh Seafood Box     | Selection of premium seafood       | 2           | 50           | N/A          | Sydney, Australia         | In Transit      |
+| 8       | Sports Equipment      | Sporting goods variety             | 3           | 60           | N/A          | Rio de Janeiro, Brazil    | Delivered       |
+| 9       | Construction Tools    | Building and construction tools    | 4           | 300          | 24x12x10     | Dubai, UAE                | In Customs      |
+| 10      | Medical Supplies      | Healthcare essentials              | 5           | 100          | N/A          | Mumbai, India             | Pending Pickup  |
+| 11      | Gaming Accessories    | Accessories for gamers             | 1           | 5            | N/A          | Toronto, Canada           | In Transit      |
+| 12      | Floral Arrangement    | Bouquet of assorted flowers        | 2           | 10           | N/A          | Amsterdam, Netherlands    | Delivered       |
+| 13      | Winter Apparel Set    | Winter clothing variety            | 3           | 70           | N/A          | Stockholm, Sweden         | In Transit      |
+| 14      | Solar Power Equipment | Renewable energy solutions         | 4           | 200          | N/A          | Cape Town, South Africa   | In Customs      |
+| 15      | Scientific Instruments| Laboratory equipment               | 5           | 80           | N/A          | Seoul, South Korea        | Pending Pickup  |
+| 16      | Musical Instruments   | Assorted musical instruments       | 1           | 30           | N/A          | Kingston, Jamaica         | In Transit      |
+| 17      | Exotic Tea Collection | Rare tea blends                    | 2           | 5            | N/A          | Kingston, Jamaica         | In Transit      |
+| 18      | Artisanal Rum         | Handcrafted rum                    | 3           | 15           | N/A          | Kingston, Jamaica         | Delivered       |
+| 19      | Cultural Artifacts    | Unique cultural items              | 1           | 20           | N/A          | Kingston, Jamaica         | In Customs      |
+| 20      | Spices Assortment     | Variety of global spices           | 2           | 10           | N/A          | Kingston, Jamaica         | Pending Pickup  |
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+CARGO going out of JAMAICA
+
+| CargoID | CargoName              | CargoDescription                   | CargoTypeID | Weight(lbs)| Dimensions  | Origin     | Destination           | Status          
+|---------|------------------------|------------------------------------|------------|-------------|-------------|------------|-----------------------|-------------|
+| 1       | Blue Mountain Coffee   | Jamaican coffee beans              | 2          | 15          | N/A         | Jamaica    | New York, USA         | In Transit      
+| 2       | Reggae Music Collection| Classic reggae albums              | 1          | 10          | N/A         | Jamaica    | London, UK            | In Transit      
+| 3       | Jamaican Jerk Seasoning| Authentic spice blend              | 3          | 5           | N/A         | Jamaica    | Paris, France         | Delivered       
+| 4       | Red Stripe Beer        | Famous Jamaican lager              | 4          | 25          | N/A         | Jamaica    | Berlin, Germany       | In Customs      
+| 5       | Handwoven Straw Hats   | Traditional Jamaican craftsmanship | 3          | 8           | N/A         | Jamaica    | Kingston, Jamaica     | Pending Pickup  
+| 6       | Jamaican Rum Sampler   | Assorted local rum varieties       | 4          | 30          | N/A         | Jamaica    | San Francisco, USA    | In Transit      
+| 7       | Bob Marley Merchandise | Clothing and accessories           | 1          | 12          | N/A         | Jamaica    | Sydney, Australia     | In Transit      
+| 8       | Jamaican Patties       | Authentic pastry filled with meat  | 2          | 6           | N/A         | Jamaica    | Rio de Janeiro, Brazil| Delivered       
+| 9       | Blue Mountain Art      | Handcrafted Jamaican artwork       | 1          | 18          | N/A         | Jamaica    | Dubai, UAE            | In Customs      
+| 10      | Tropical Fruits Bundle | Mix of fresh fruits from Jamaica   | 2          | 35          | N/A         | Jamaica    | Mumbai, India         | Pending Pickup  
+
+
+
+
+
+//------------------------------------------------------------------------------------------
+
+
+make sure cargoes Scheduled (Arrival Location), 
+matches cargoes final destination
+
+                                                             SCHEDULE DATA
+
+
+Schedules Arival location, 
+should be the same as a 
+cargoes final destination
+
+
+| ScheduleID | DepartureLocation         | ArrivalLocation          | DepartureTime         | ArrivalTime           |
+|------------|---------------------------|--------------------------|-----------------------|-----------------------|
+| 1          | Kingston, Jamaica         | New York, USA            | 2024-04-10 08:00:00   | 2024-04-10 12:00:00   |
+| 2          | Paris, France             | Kingston, Jamaica        | 2024-04-15 10:00:00   | 2024-04-15 14:00:00   |
+| 3          | Toronto, Canada           | Kingston, Jamaica        | 2024-04-20 12:00:00   | 2024-04-20 16:00:00   |
+| 4          | Tokyo, Japan              | Kingston, Jamaica        | 2024-04-25 14:00:00   | 2024-04-25 18:00:00   |
+| 5          | Sydney, Australia         | Kingston, Jamaica        | 2024-04-30 16:00:00   | 2024-04-30 18:00:00   |
+| 6          | Berlin, Germany           | Kingston, Jamaica        | 2024-05-05 18:00:00   | 2024-05-06 12:00:00   |
+| 7          | Tokyo, Japan              | Kingston, Jamaica        | 2024-05-10 10:00:00   | 2024-05-10 14:00:00   |
+| 8          | Berlin, Germany           | Kingston, Jamaica        | 2024-05-15 12:00:00   | 2024-05-16 16:00:00   |
+| 9          | San Francisco, USA        | Kingston, Jamaica        | 2024-05-20 16:00:00   | 2024-05-21 18:00:00   |
+| 10         | Rio de Janeiro, Brazil    | Kingston, Jamaica        | 2024-05-25 18:00:00   | 2024-05-26 22:00:00   |
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+            Trucks Table (Jamaican Trucks):
+
+| TruckID | LicensePlate | Capacity (lbs)  | Status        |
+|---------|--------------|-----------------|---------------|
+| 1       | JAM123       | 5000            | Available     |
+| 2       | JAM456       | 8000            | In Use        |
+| 3       | JAM789       | 6000            | Available     |
+| 4       | JAMABC       | 7000            | Available     |
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+                                     Routes Table (Jamaican Routes):
+
+| RouteID | ScheduleID | TruckID | Waypoints                                   | Distance (miles)  | EstimatedTime          |
+|---------|------------|---------|---------------------------------------------|-------------------|------------------------|
+| 1       | 19         | 1       | Kingston Warehouse                          | 20                | 1 hour                 |
+| 2       | 19         | 2       | Kingston Warehouse -> Montego Bay Warehouse | 120               | 4 hours                |
+| 3       | 20         | 3       | Kingston Warehouse -> Ocho Rios Warehouse   | 70                | 2.5 hours              |
+| 4       | 20         | 4       | Kingston Warehouse -> Port Antonio Warehouse| 150               | 5 hours                |
+| 5       | 21         | 1       | Kingston Warehouse -> Negril Warehouse      | 180               | 6 hours                |
+| 6       | 21         | 2       | Kingston Warehouse -> Falmouth Warehouse    | 50                | 1.5 hours              |
+| 7       | 22         | 3       | Kingston Warehouse -> Mandeville Warehouse  | 90                | 3 hours                |
+| 8       | 22         | 4       | Kingston Warehouse -> Portmore Warehouse    | 30                | 1 hour                 |
+| 9       | 23         | 1       | Kingston Warehouse -> Spanish Town Warehouse| 40                | 1.5 hours              |
+| 10      | 23         | 2       | Kingston Warehouse -> May Pen Warehouse     | 60                | 2 hours                |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
