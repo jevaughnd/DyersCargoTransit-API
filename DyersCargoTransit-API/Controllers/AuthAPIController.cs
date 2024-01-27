@@ -1,8 +1,10 @@
 ﻿using DyersCargoTransit_API.Model;
 using DyersCargoTransit_API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace DyersCargoTransit_API.Controllers
 {
@@ -56,6 +58,16 @@ namespace DyersCargoTransit_API.Controllers
             }
             return BadRequest(new { status = "failed", message = "login failed" });
         }
+
+
+
+
+     
+
+
+
+
+
 
     }
 }

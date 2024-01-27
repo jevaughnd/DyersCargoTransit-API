@@ -1,0 +1,46 @@
+﻿@model DyersCargoTransit_Interface.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container row-cols-md-3  d-flex justify-content-center align-items-center ">
+
+    <form asp-action="Login" class="LoginForm">
+
+        <center><h1>Login</h1></center>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Username" class="control-label"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row-cols-md-1 loginBtn">
+            <input type="submit" value="Login" class="btn btn-primary" />
+        </div>
+        <div class="form-group row-cols-md-1 loginBtn">
+            <a asp-controller="Auth" asp-action="Register" class="btn btn-dark">Register</a>
+        </div>
+
+    </form>
+
+</div>
+
+
+
+<div>
+
+    <img class="BigImg1" src="~/Images/Trade_board_Jamaica croped 1.png" height="585" />
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

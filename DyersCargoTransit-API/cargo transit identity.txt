@@ -50,3 +50,19 @@ var createAdmin = await userManager.CreateAsync(admin, "Admin123%");
 
 
 
+----------------------------------
+USERS TEST
+----------------------------------
+
+Registration for regular users working in front end:
+--
+Romario Thompson | romario.thom@yahoo.com | 
+PW: RomarioU$er1
+
+-----------------------------------
+
+name format for testing register:
+employee2@mail.com
+EmployeeU$ser2
+--------------
+

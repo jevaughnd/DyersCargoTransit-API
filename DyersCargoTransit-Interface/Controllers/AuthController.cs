@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DyersCargoTransit_Interface.Controllers
 {
-    public class LoginController : Controller
+    public class AuthController : Controller
     {
         const string AUTH_URL = "https://localhost:7005/api/AuthAPI";
 
@@ -90,5 +90,66 @@ namespace DyersCargoTransit_Interface.Controllers
             string token = HttpContext.Session.GetString(SESSION_AUTH)!;
             return token;
         }
+        //------------------------------------------------------------------
+
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(AUTH_URL);
+                    string jsonContent = JsonConvert.SerializeObject(user);
+
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    // Send registration data to API
+                    HttpResponseMessage response = await client.PostAsync($"{AUTH_URL}/register", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        var responseData = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseContent);
+
+                        if (responseData.ContainsKey("status") && responseData["status"].ToString() == "success")
+                        {
+                            //TempData["registration-success"] = "Registration Was Successful";
+                            return RedirectToAction("Auth", "Login");
+                        }
+                        else
+                        {
+                            // Registration failed
+                            if (responseData.ContainsKey("message"))
+                            {
+                                ModelState.AddModelError(string.Empty, responseData["message"].ToString());
+                            }
+                            else
+                            {
+                                ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
+                            }
+
+                            return View(user);
+                        }
+                    }
+                    else
+                    {
+                        // Registration failed
+                        ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
+                        return View(user);
+                    }
+                }
+            }
+
+            return View(user);
+        }
+
     }
 }

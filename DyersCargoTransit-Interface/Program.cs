@@ -20,15 +20,7 @@ builder.Services.AddHttpClient("LoginAPI", client =>
     client.BaseAddress = new Uri("https://localhost:7005/api/AuthAPI");
 });
 
-//----------------
-//cgbt
 
-
-
-
-
-
-//--------------
 
 
 var app = builder.Build();

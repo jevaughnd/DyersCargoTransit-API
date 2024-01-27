@@ -8,6 +8,8 @@ namespace DyersCargoTransit_API.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+       
+
         //cargo
         public DbSet<Cargo> Cargos { get; set; } //
         public DbSet<CargoStatus> CargoStatuses { get; set; }

@@ -13,7 +13,7 @@ namespace DyersCargoTransit_API.Controllers
     {
 
         private readonly ApplicationDbContext _cxt;
-
+        
         public CargoAPIController (ApplicationDbContext cxt)
         {
             this._cxt = cxt;

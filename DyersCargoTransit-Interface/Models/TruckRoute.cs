@@ -16,7 +16,7 @@ namespace DyersCargoTransit_Interface.Models
         [ForeignKey("ShippingScheduleId")]
         public virtual ShippingSchedule? ShippingSchedule { get; set; }
 
-
+        
 
         //truck
         [Display(Name = "Truck")]
