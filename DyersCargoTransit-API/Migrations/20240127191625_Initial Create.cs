@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DyersCargoTransit_API.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDatabase2 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -294,6 +294,38 @@ namespace DyersCargoTransit_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserProfiles",
+                columns: table => new
+                {
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FullName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Bio = table.Column<string>(type: "varchar(50)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "varchar(15)", nullable: false),
+                    TRN = table.Column<string>(type: "varchar(10)", nullable: false),
+                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Street = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Town = table.Column<string>(type: "varchar(50)", nullable: false),
+                    ParishId = table.Column<int>(type: "int", nullable: false),
+                    ProfilePicture = table.Column<string>(type: "varchar(500)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserProfiles", x => x.ApplicationUserId);
+                    table.ForeignKey(
+                        name: "FK_UserProfiles_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserProfiles_Parishes_ParishId",
+                        column: x => x.ParishId,
+                        principalTable: "Parishes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Trucks",
                 columns: table => new
                 {
@@ -471,6 +503,11 @@ namespace DyersCargoTransit_API.Migrations
                 name: "IX_Trucks_TruckStatusId",
                 table: "Trucks",
                 column: "TruckStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserProfiles_ParishId",
+                table: "UserProfiles",
+                column: "ParishId");
         }
 
         /// <inheritdoc />
@@ -498,10 +535,10 @@ namespace DyersCargoTransit_API.Migrations
                 name: "TruckRoutes");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "UserProfiles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Cargos");
@@ -517,6 +554,9 @@ namespace DyersCargoTransit_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Trucks");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "CargoStatuses");

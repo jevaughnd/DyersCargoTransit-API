@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DyersCargoTransit_API.Model;
+using Microsoft.AspNetCore.Identity;
 
 namespace DyersCargoTransit_API.Utils
 {
@@ -7,7 +8,7 @@ namespace DyersCargoTransit_API.Utils
         public static async Task Intialize(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             await SeedRoles(roleManager);
             await SeedAdminUser(userManager);
             await SeedManagerUser(userManager);
@@ -30,13 +31,13 @@ namespace DyersCargoTransit_API.Utils
 
 
         //admin
-        public static async Task SeedAdminUser(UserManager<IdentityUser> userManager)
+        public static async Task SeedAdminUser(UserManager<ApplicationUser> userManager)
         {
             var adminUser = await userManager.FindByNameAsync("admin");
 
             if (adminUser == null)
             {
-                var admin = new IdentityUser()
+                var admin = new ApplicationUser()
                 {
                     UserName = "admin",
                     Email = "admin@mail.com",
@@ -57,7 +58,7 @@ namespace DyersCargoTransit_API.Utils
 
 
         //manager
-        public static async Task SeedManagerUser(UserManager<IdentityUser> userManager)
+        public static async Task SeedManagerUser(UserManager<ApplicationUser> userManager)
         {
            
         }
@@ -65,7 +66,7 @@ namespace DyersCargoTransit_API.Utils
 
 
         //employee
-        public static async Task SeedEmployeeUser(UserManager<IdentityUser> userManager)
+        public static async Task SeedEmployeeUser(UserManager<ApplicationUser> userManager)
         {
             
         }

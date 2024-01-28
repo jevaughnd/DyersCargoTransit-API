@@ -1,11 +1,13 @@
 using DyersCargoTransit_API;
 using DyersCargoTransit_API.Data;
+using DyersCargoTransit_API.Model;
 using DyersCargoTransit_API.Services;
 using DyersCargoTransit_API.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -36,10 +38,17 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("JevConnection"))
 
 
 //Add Identity User // Store -------
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+//{
+//    options.Password.RequiredLength = 5;
+//}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+//Add Identity User // Store -------
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 5;
 }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
 
 
 
@@ -97,12 +106,18 @@ using (var scope = app.Services.CreateScope())
 
 
 
+//Enable the serving of static files: 2
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath,
+                                            "api/server/Updated-Imgs")),
+    RequestPath = "/images/api/server/Updated-Imgs" // Change this to the URL path you want to use
+});
 
 
 
 
-
-
+//----------------
 
 
 // Configure the HTTP request pipeline.

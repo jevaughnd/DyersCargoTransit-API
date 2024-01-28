@@ -13,14 +13,31 @@ namespace DyersCargoTransit_API.Controllers
     public class AuthAPIController : ControllerBase
     {
         private readonly IAuthService _authService;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 
-        public AuthAPIController(IAuthService authService, UserManager<IdentityUser> userManager)
+        public AuthAPIController(IAuthService authService, UserManager<ApplicationUser> userManager)
         {
             this._authService = authService;
             this._userManager = userManager;
         }
+
+
+        //[HttpPost]
+        //[Route("register")]
+        ////public async Task<IActionResult> Register(User user)
+        //public async Task<IActionResult> Register(User user)
+        //{
+        //    if (await _authService.Register(user))
+        //    {
+        //        //assign default role employee
+        //        var roles = new List<string> { "Employee" };
+        //        await _authService.AssignRoles(user.Username, roles);
+
+        //        return Ok(new { status = "succes", message = "registration succesful" });
+        //    }
+        //    return BadRequest(new { status = "fail", message = "registration failed" });
+        //}
 
 
         [HttpPost]
@@ -29,14 +46,19 @@ namespace DyersCargoTransit_API.Controllers
         {
             if (await _authService.Register(user))
             {
-                //assign default role employee
-                var roles = new List<string> {"Employee"};
-                await _authService.AssignRoles(user.Username, roles);
-
-                return Ok(new { status = "succes", message = "registration succesful" });
+                // No need to explicitly assign roles here as it's already done in AuthService.Register
+                return Ok(new { status = "success", message = "registration successful" });
             }
+
             return BadRequest(new { status = "fail", message = "registration failed" });
         }
+
+
+
+
+
+
+
 
 
 
@@ -60,9 +82,11 @@ namespace DyersCargoTransit_API.Controllers
         }
 
 
+        //-------------------------------------------------------------------------------------------------
 
 
-     
+
+
 
 
 
