@@ -70,7 +70,7 @@ namespace DyersCargoTransit_API.Services
                         var userProfile = new UserProfile
                         {
                             ApplicationUserId = registeredUser.Id,
-                            FullName = user.Username, // You can use other relevant information
+                            FullName = user.Username, 
                             //TRN = user.Username,
                             TRN = user.Username.Substring(0, Math.Min(20, user.Username.Length)),
                             Bio = user.Username,
@@ -78,7 +78,7 @@ namespace DyersCargoTransit_API.Services
                             PhoneNumber = user.Username.Substring(0, Math.Min(15, user.Username.Length)),
                             Street = user.Username,
                             Town = user.Username,
-                            DOB = DateTime.Now, // You might want to set a default value or prompt the user for this information
+                            DOB = DateTime.Now, //default value
                             ProfilePicture = user.Username,
                             ParishId = 1
 
@@ -90,10 +90,7 @@ namespace DyersCargoTransit_API.Services
                         // Save changes to the database
                         await userManager.UpdateAsync(registeredUser);
 
-                        
-                   
-
-
+                       
                         // Return true for successful registration
                         return true;
                     }
