@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="api\server\Updated-Imgs\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -54,43 +54,51 @@ namespace DyersCargoTransit_API.Controllers
         //}
 
 
-        //Suposed to Poulate CustomerProfile Feilds When Customer Registers
+
+
+        //Suposed to Populate the CustomerProfile Feilds When Customer Registers
+
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register(User user, CustomerProfile customerProfile)
+        public async Task<IActionResult> Register([FromBody] RegistrationModel registrationModel)
         {
-            if (await _authService.RegisterUser(user))
+            if (await _authService.RegisterUser(registrationModel.User))
             {
-                // Assign default role Customer
                 var roles = new List<string> { "Customer" };
-                await _authService.AssignRoles(user.Username, roles);
+                await _authService.AssignRoles(registrationModel.User.Username, roles);
 
-                // Retrieve the authenticated user
-                var identityUser = await _userManager.FindByEmailAsync(user.Username);
+                var identityUser = await _userManager.FindByEmailAsync(registrationModel.User.Username);
 
                 if (identityUser != null)
                 {
-                    // Check if the customer profile already exists
                     var existingCustomerProfile = _cxt.CustomerProfiles.FirstOrDefault(x => x.UserId == identityUser.Id);
 
                     if (existingCustomerProfile != null)
                     {
-                        // Update existing customer profile
-                        existingCustomerProfile.FullName = customerProfile.FullName;
-                        existingCustomerProfile.EmailAddress = customerProfile.EmailAddress;
-                        // Update other fields as needed...
+                        existingCustomerProfile.FullName = registrationModel.CustomerProfile.FullName;
+                        existingCustomerProfile.EmailAddress = registrationModel.CustomerProfile.EmailAddress;
+                        existingCustomerProfile.PhoneNumber = registrationModel.CustomerProfile.PhoneNumber;
+                        existingCustomerProfile.DOB = registrationModel.CustomerProfile.DOB;
+                        existingCustomerProfile.Street = registrationModel.CustomerProfile.Street;
+                        existingCustomerProfile.Town = registrationModel.CustomerProfile.Town;
+                        existingCustomerProfile.ParishId = registrationModel.CustomerProfile.ParishId;
+                        existingCustomerProfile.ProfilePicture = registrationModel.CustomerProfile.ProfilePicture;
 
                         _cxt.SaveChanges();
                     }
                     else
                     {
-                        // Create a new customer profile
                         var newCustomerProfile = new CustomerProfile
                         {
                             UserId = identityUser.Id,
-                            FullName = customerProfile.FullName,
-                            EmailAddress = customerProfile.EmailAddress,
-                            // Set other fields as needed...
+                            FullName = registrationModel.CustomerProfile.FullName,
+                            EmailAddress = registrationModel.CustomerProfile.EmailAddress,
+                            PhoneNumber = registrationModel.CustomerProfile.PhoneNumber,
+                            DOB = registrationModel.CustomerProfile.DOB,
+                            Street = registrationModel.CustomerProfile.Street,
+                            Town = registrationModel.CustomerProfile.Town,
+                            ParishId = registrationModel.CustomerProfile.ParishId,
+                            ProfilePicture = registrationModel.CustomerProfile.ProfilePicture,
                         };
 
                         _cxt.CustomerProfiles.Add(newCustomerProfile);
@@ -103,6 +111,9 @@ namespace DyersCargoTransit_API.Controllers
 
             return BadRequest(new { status = "fail", message = "registration failed" });
         }
+
+
+
 
 
 

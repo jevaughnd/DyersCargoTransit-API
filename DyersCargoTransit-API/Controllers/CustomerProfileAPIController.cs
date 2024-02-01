@@ -34,14 +34,14 @@ public class CustomerProfileController : ControllerBase
         return Ok(customerProfile);
     }
 
+
+
+
     [Authorize(Roles = "Admin,Customer")]
     [HttpPut("Profile")]
     public IActionResult UpdateCustomerProfile([FromBody] CustomerProfile profile)
     {
-        // Retrieve the current user's ID (you might need to adjust this based on your authentication setup)
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-        // Query the customer profile using the user ID
         var existingProfile = _cxt.CustomerProfiles.FirstOrDefault(x => x.UserId == userId);
 
         if (existingProfile == null)
@@ -49,13 +49,18 @@ public class CustomerProfileController : ControllerBase
             return NotFound();
         }
 
-        // Update the existing profile with the new data
         existingProfile.FullName = profile.FullName;
         existingProfile.EmailAddress = profile.EmailAddress;
-        // Update other fields as needed...
+        existingProfile.PhoneNumber = profile.PhoneNumber;
+        existingProfile.DOB = profile.DOB;
+        existingProfile.Street = profile.Street;
+        existingProfile.Town = profile.Town;
+        existingProfile.ParishId = profile.ParishId;
+        existingProfile.ProfilePicture = profile.ProfilePicture;
 
         _cxt.SaveChanges();
 
         return Ok(existingProfile);
     }
+
 }
