@@ -44,7 +44,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("JevConnection"))
 //}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 //Add Identity User // Store -------
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 5;
 }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
@@ -106,13 +106,23 @@ using (var scope = app.Services.CreateScope())
 
 
 
-//Enable the serving of static files: 2
+
+//Enable the serving of static files: 
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath,
                                             "api/server/Updated-Imgs")),
     RequestPath = "/images/api/server/Updated-Imgs" // Change this to the URL path you want to use
 });
+
+
+
+
+
+
+
+
+
 
 
 
