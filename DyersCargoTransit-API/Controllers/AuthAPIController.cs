@@ -13,48 +13,30 @@ namespace DyersCargoTransit_API.Controllers
     public class AuthAPIController : ControllerBase
     {
         private readonly IAuthService _authService;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
 
-        public AuthAPIController(IAuthService authService, UserManager<ApplicationUser> userManager)
+        public AuthAPIController(IAuthService authService, UserManager<IdentityUser> userManager)
         {
             this._authService = authService;
             this._userManager = userManager;
         }
 
 
-        //[HttpPost]
-        //[Route("register")]
-        ////public async Task<IActionResult> Register(User user)
-        //public async Task<IActionResult> Register(User user)
-        //{
-        //    if (await _authService.Register(user))
-        //    {
-        //        //assign default role employee
-        //        var roles = new List<string> { "Employee" };
-        //        await _authService.AssignRoles(user.Username, roles);
-
-        //        return Ok(new { status = "succes", message = "registration succesful" });
-        //    }
-        //    return BadRequest(new { status = "fail", message = "registration failed" });
-        //}
-
-
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register(User user)
         {
-            if (await _authService.Register(user))
+            if (await _authService.RegisterUser(user))
             {
-                // No need to explicitly assign roles here as it's already done in AuthService.Register
-                return Ok(new { status = "success", message = "registration successful" });
-            }
+                //assign default role Customer
+                var roles = new List<string> { "Customer" };
+                await _authService.AssignRoles(user.Username, roles);
 
+                return Ok(new { status = "succes", message = "registration succesful" });
+            }
             return BadRequest(new { status = "fail", message = "registration failed" });
         }
-
-
-
 
 
 
@@ -66,7 +48,7 @@ namespace DyersCargoTransit_API.Controllers
         [Route("login")]
         public async Task<IActionResult> Login(User user)
         {
-            var result = await _authService.Login(user);
+            var result = await _authService.LoginUser(user);
 
             //user
             var identityUser = await _userManager.FindByEmailAsync(user.Username);

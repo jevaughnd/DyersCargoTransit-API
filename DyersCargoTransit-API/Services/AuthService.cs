@@ -10,107 +10,28 @@ namespace DyersCargoTransit_API.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly UserManager<IdentityUser> userManager;
         private readonly IConfiguration config;
-        private ApplicationUser user;
+       
 
-        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration config)
+        public AuthService(UserManager<IdentityUser> userManager, IConfiguration config)
         {
             this.userManager = userManager;
             this.config = config;
         }
 
-        ////register
-        //public async Task<bool> Register(User user)
-        //{
-        //    var identityUser = new ApplicationUser
-        //    {
-        //        UserName = user.Username,
-        //        Email = user.Username,
-        //    };
-
-        //    var result = await userManager.CreateAsync(identityUser, user.Password);
-        //    return result.Succeeded;
-        //}
-
-
-
-
-
-        // REGISTER
-        public async Task<bool> Register(User user)
+        //register
+        public async Task<bool> RegisterUser(User user)
         {
-            var identityUser = new ApplicationUser
+            var identityUser = new IdentityUser
             {
                 UserName = user.Username,
                 Email = user.Username,
             };
 
             var result = await userManager.CreateAsync(identityUser, user.Password);
-
-            if (result.Succeeded)
-            {
-                // Assign default role "Employee"
-                var roles = new List<string> { "Employee" };
-                await AssignRoles(user.Username, roles);
-
-                // Fetch the registered user to ensure we have the latest data
-                var registeredUser = await userManager.Users
-                    .Include(u => u.UserProfile)
-                    .FirstOrDefaultAsync(u => u.UserName == user.Username);
-
-                if (registeredUser != null)
-                {
-                    // Check if the UserProfile already exists
-                    var existingProfile = registeredUser.UserProfile;
-
-                    if (existingProfile == null)
-                    {
-                        // Create and associate a new UserProfile
-                        var userProfile = new UserProfile
-                        {
-                            ApplicationUserId = registeredUser.Id,
-                            FullName = user.Username, 
-                            //TRN = user.Username,
-                            TRN = user.Username.Substring(0, Math.Min(20, user.Username.Length)),
-                            Bio = user.Username,
-                            //PhoneNumber = user.Username,
-                            PhoneNumber = user.Username.Substring(0, Math.Min(15, user.Username.Length)),
-                            Street = user.Username,
-                            Town = user.Username,
-                            DOB = DateTime.Now, //default value
-                            ProfilePicture = user.Username,
-                            ParishId = 1
-
-                        };
-
-                        // Associate the UserProfile with the registered user
-                        registeredUser.UserProfile = userProfile;
-
-                        // Save changes to the database
-                        await userManager.UpdateAsync(registeredUser);
-
-                       
-                        // Return true for successful registration
-                        return true;
-                    }
-                    else
-                    {
-                        // UserProfile already exists (optional: you might want to log this)
-                        return true;
-                    }
-                }
-                else
-                {
-                    // Return false if unable to retrieve registered user
-                    return false;
-                }
-            }
-
-            // Return false for failed registration
-            return false;
+            return result.Succeeded;
         }
-
 
 
 
@@ -118,7 +39,7 @@ namespace DyersCargoTransit_API.Services
 
 
         //login----------------
-        public async Task<bool> Login(User user)
+        public async Task<bool> LoginUser(User user)
         {
             var identityUser = await userManager.FindByEmailAsync(user.Username);
             if (identityUser == null)
@@ -127,6 +48,8 @@ namespace DyersCargoTransit_API.Services
             }
             return await userManager.CheckPasswordAsync(identityUser, user.Password);
         }
+
+
 
 
         //assign roles------------
@@ -142,12 +65,15 @@ namespace DyersCargoTransit_API.Services
         }
 
 
-        //generate token-------------
+
+
+        //Generate Token-------------
         public async Task<string> GenerateToken(User user)
         {
 
             //--
             var identityUser = await userManager.FindByEmailAsync(user.Username);
+            
             if (identityUser == null)
             {
                 return null;
@@ -183,6 +109,8 @@ namespace DyersCargoTransit_API.Services
             string token = new JwtSecurityTokenHandler().WriteToken(securityToken);
             return token;
         }
+
+
 
        
     }

@@ -8,18 +8,18 @@ namespace DyersCargoTransit_API.Utils
         public static async Task Intialize(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
             await SeedRoles(roleManager);
             await SeedAdminUser(userManager);
-            await SeedManagerUser(userManager);
-            await SeedEmployeeUser(userManager);
+            await SeedCustomerUser(userManager);
+
         }
 
-        
+
 
         public static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
         {
-            var roles = new[] {"Admin", "Manager", "Employee"};
+            var roles = new[] { "Admin", "Customer" };
             foreach (var role in roles)
             {
                 if (!await roleManager.RoleExistsAsync(role))
@@ -31,13 +31,13 @@ namespace DyersCargoTransit_API.Utils
 
 
         //admin
-        public static async Task SeedAdminUser(UserManager<ApplicationUser> userManager)
+        public static async Task SeedAdminUser(UserManager<IdentityUser> userManager)
         {
             var adminUser = await userManager.FindByNameAsync("admin");
 
             if (adminUser == null)
             {
-                var admin = new ApplicationUser()
+                var admin = new IdentityUser()
                 {
                     UserName = "admin",
                     Email = "admin@mail.com",
@@ -53,30 +53,44 @@ namespace DyersCargoTransit_API.Utils
             }
         }
 
+
+
+
         //repeat method for other roles
 
-
-
-        //manager
-        public static async Task SeedManagerUser(UserManager<ApplicationUser> userManager)
+        public static async Task SeedCustomerUser(UserManager<IdentityUser> userManager)
         {
-           
+            var customerUser = await userManager.FindByNameAsync("customer");
+
+            if (customerUser == null)
+            {
+                var customer = new IdentityUser()
+                {
+                    UserName = "customer",
+                    Email = "customer@mail.com",
+                };
+
+                var createCustomer = await userManager.CreateAsync(customer, "Customer123%");
+
+                if (createCustomer.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(customer, "Customer");
+                }
+
+            }
         }
-
-
-
-        //employee
-        public static async Task SeedEmployeeUser(UserManager<ApplicationUser> userManager)
-        {
-            
-        }
-
-
-        
-
-
-        
 
 
     }
+
 }
+
+
+        
+
+
+        
+
+
+    
+
