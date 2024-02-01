@@ -27,6 +27,8 @@ namespace DyersCargoTransit_API.Data
         public DbSet<TruckRoute> TruckRoutes { get; set; } //
         public DbSet<TruckStatus> TruckStatuses { get; set; }
 
+        public DbSet<CustomerProfile> CustomerProfiles { get; set; }
+
     }
 
 
