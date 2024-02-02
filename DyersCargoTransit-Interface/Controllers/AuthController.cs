@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 
 namespace DyersCargoTransit_Interface.Controllers
@@ -236,7 +237,7 @@ namespace DyersCargoTransit_Interface.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Login(AppUser user)
+        public async Task<IActionResult> Login(AppUser user, int Id)
         {
             if (ModelState.IsValid)
             {
@@ -269,11 +270,22 @@ namespace DyersCargoTransit_Interface.Controllers
                                     HttpContext.Session.SetString(Session_Role, "Admin");
                                     return RedirectToAction("CustomerProfiles", "Auth");
                                 }
+                                //else
+                                //{
+                                //    TempData["new-login"] = "Login Successful"; // Succes message displayed in Home Index
+                                //    HttpContext.Session.SetString(Session_Role, "Customer");
+                                //    return RedirectToAction("Index", "Home");
+                                //}
                                 else
                                 {
-                                    TempData["new-login"] = "Login Successful"; // Succes message displayed in Home Index
+                                    TempData["new-login"] = "Login Successful";
                                     HttpContext.Session.SetString(Session_Role, "Customer");
-                                    return RedirectToAction("Index", "Home");
+
+                                    // Assuming you have the user's ID, replace "userId" with the actual ID.
+                                    return RedirectToAction("Create", "Cargo");
+
+                                   
+
                                 }
 
                             }
@@ -517,6 +529,9 @@ namespace DyersCargoTransit_Interface.Controllers
                 }
             }
         }
+
+
+
 
 
 

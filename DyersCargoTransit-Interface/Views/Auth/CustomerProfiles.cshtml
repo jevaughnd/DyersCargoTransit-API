@@ -10,6 +10,7 @@
 
 
 
+
 <center> <h3>Customer Profiles</h3> </center>
 
 
@@ -56,6 +57,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
@@ -90,6 +92,7 @@
                         </a>
                     </div>
                 </td>
+
                 <td>
                     <div class=" btn-group w-75">
                         <!--Align buttons-->
@@ -97,7 +100,7 @@
                             <i class="fa-sharp fa-solid fa-pen-to-square"></i>
                         </a>
 
-                        <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                        <a asp-action="ProfileDetail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
                             <i class="fa-solid fa-circle-info"></i>
                         </a>
 
@@ -111,3 +114,4 @@
 }
     </tbody>
 </table>
+<a asp-action="ProfileDetail">  </a>

@@ -139,7 +139,8 @@ namespace DyersCargoTransit_Interface.Controllers
             if (cusResponse.IsSuccessStatusCode)
             {
                 TempData["new-cargo"] = "New Cargo Added"; // Succes message displayed in create
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return View(cargoVm);
             }
             else
             {
