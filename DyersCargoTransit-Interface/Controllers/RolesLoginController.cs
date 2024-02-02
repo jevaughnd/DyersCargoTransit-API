@@ -40,7 +40,7 @@ namespace DyersCargoTransit_Interface.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            User user = new User();
+            AppUser user = new AppUser();
             return View(user);
         }
 
@@ -100,7 +100,7 @@ namespace DyersCargoTransit_Interface.Controllers
         //=======================================================
 
         [HttpPost]
-        public async Task<IActionResult> Index(User user)
+        public async Task<IActionResult> Index(AppUser user)
         {
             var identityUser = new IdentityUser();
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");

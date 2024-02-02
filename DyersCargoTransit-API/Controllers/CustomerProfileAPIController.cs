@@ -20,6 +20,22 @@ public class CustomerProfileController : ControllerBase
 
 
 
+    //CUSTOMER END POINTS
+
+    [HttpGet("CustomerProfiles")]
+    public IActionResult GetCustomerProfiles()
+    {
+        var persons = _cxt.CustomerProfiles.Include(p => p.Parish).ToList();
+
+        if (persons == null)
+        {
+            return BadRequest();
+        }
+        return Ok(persons);
+    }
+
+
+
 
 
     //Finds Individual Record By Id
