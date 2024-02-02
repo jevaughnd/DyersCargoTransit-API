@@ -10,8 +10,11 @@ builder.Services.AddControllersWithViews();
 
 //added
 builder.Services.AddDistributedMemoryCache();
+
 //added
 builder.Services.AddSession();
+builder.Services.AddMvc().AddSessionStateTempDataProvider();
+
 
 
 //login controller

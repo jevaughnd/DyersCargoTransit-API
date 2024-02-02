@@ -55,6 +55,7 @@
             <input asp-for="Town" class="form-control" />
             <span asp-validation-for="Town" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="ParishId" class="control-label"></label>
             <input asp-for="ParishId" class="form-control" />
@@ -66,11 +67,15 @@
             <input asp-for="SelectedParishId" class="form-control" />
             <span asp-validation-for="SelectedParishId" class="text-danger"></span>
         </div>*@
+
+
         <div class="form-group">
-            <label asp-for="ProfilePicture" class="control-label"></label>
-            <input asp-for="ProfilePicture" class="form-control" />
-            <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+            <label asp-for="CustomerProfile.ProfilePicture" class="control-label"></label>
+            <input asp-for="CustomerProfile.ProfilePicture" class="form-control" />
+            <span asp-validation-for="CustomerProfile.ProfilePicture" class="text-danger"></span>
         </div>
+
+
         <div class="form-group">
             <input type="submit" value="Register " class="btn btn-primary" />
         </div>

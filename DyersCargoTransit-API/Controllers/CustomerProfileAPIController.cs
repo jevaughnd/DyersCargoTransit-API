@@ -31,6 +31,12 @@ public class CustomerProfileController : ControllerBase
         {
             return BadRequest();
         }
+
+        var baseUrl = "https://localhost:7005/Images/";
+        foreach(var img in persons) 
+        {
+            img.ProfilePicture = baseUrl + img.ProfilePicture;
+        }
         return Ok(persons);
     }
 
@@ -48,6 +54,10 @@ public class CustomerProfileController : ControllerBase
         {
             return NotFound();
         }
+
+        var baseUrl = "https://localhost:7005/Images/";
+        person.ProfilePicture = baseUrl + person.ProfilePicture;
+
         return Ok(person);
     }
 
@@ -64,11 +74,145 @@ public class CustomerProfileController : ControllerBase
     }
 
 
- 
+    //Edit Record
+    //[Authorize(Roles = "Admin")]
+    [HttpPut("CustomerProfilePut")]
+    public IActionResult UpdateCustomer([FromBody] CustomerProfile values)
+    {
+        if (values.Id == null)
+        {
+            return NotFound();
+        }
+        _cxt.CustomerProfiles.Update(values);
+        _cxt.SaveChanges();
+        return CreatedAtAction(nameof(GetCustomerProfileById), new { id = values.Id }, values);
+    }
 
 
 
 
+    //Delete Individual Record By Id
+    [HttpDelete("{id}")]
+    public IActionResult DeleteProfileById(int id)
+    {
+        var person = _cxt.CustomerProfiles.Include(p => p.Parish).FirstOrDefault(x => x.Id == id);
+
+        if (person == null)
+        {
+            return NotFound();
+        }
+        _cxt.CustomerProfiles.Remove(person);
+        _cxt.SaveChanges();
+        return Ok(person);
+    }
+
+
+
+
+   //UPDATE FILE
+
+
+    [HttpPut("ProfilePut/{id}")]
+    public async Task<IActionResult> EditFile(int id, [FromForm] CustomerProfileDto model)
+    {
+        if (ModelState.IsValid)
+        {
+            var existingCustomerProfile = await _cxt.CustomerProfiles.FindAsync(id);
+
+            if (existingCustomerProfile == null)
+            {
+                return NotFound();
+            }
+
+
+
+            // Update the properties of the CustomerProfile entity based on the model
+            
+            existingCustomerProfile.FullName = model.FullName;
+            existingCustomerProfile.EmailAddress = model.EmailAddress;
+            existingCustomerProfile.PhoneNumber = model.PhoneNumber;
+            existingCustomerProfile.DOB = model.DOB;
+            existingCustomerProfile.Street = model.Street;
+            existingCustomerProfile.Town = model.Town;
+            existingCustomerProfile.ParishId = model.ParishId;
+
+
+            // Check if a new front image is provided
+            if (model.ProfilePictureFile != null && model.ProfilePictureFile.Length > 0)
+            {
+                // Generate a unique file name for the  image
+                var uniqueFileName = Guid.NewGuid() + "_" + model.ProfilePictureFile.FileName;
+
+                // Define the final file path on the server
+                var apiFilePath = Path.Combine("api", "server", "Updated-Imgs", uniqueFileName);
+
+                // Save the new image to the server, overwriting the existing front image
+                using (var stream = new FileStream(apiFilePath, FileMode.Create))
+                {
+                    await model.ProfilePictureFile.CopyToAsync(stream);
+                }
+
+                // Update the front image file path in the database
+                existingCustomerProfile.ProfilePicture = apiFilePath;
+            }
+
+
+            // Save the changes to the database
+            _cxt.CustomerProfiles.Update(existingCustomerProfile);
+            _cxt.SaveChanges();
+
+            return CreatedAtAction(nameof(GetCustomerProfileById), new { id = existingCustomerProfile.Id }, existingCustomerProfile);
+        }
+
+        return BadRequest(ModelState);
+    }
+
+
+
+
+
+
+    //-----------------------------------
+    //Retrieve a link to the uploaded file
+    [HttpGet("files/{fileName}")]
+    public IActionResult GetFile(string fileName)
+    {
+        // Construct the full path to the file based on the provided 'fileName'
+        string filePath = Path.Combine("api", "server", "Updated-Imgs", fileName);
+
+
+        // Check if the file exists
+        if (!System.IO.File.Exists(filePath))
+        {
+            return NotFound(); // Or handle the case where the file doesn't exist
+        }
+
+        // Determine the content type based on the file's extension
+        string contentType = GetContentType(fileName);
+
+
+        // Return the image file as a FileStreamResult with the appropriate content type
+        var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        return new FileStreamResult(fileStream, contentType); // Adjust the content type as needed
+
+    }
+    private string GetContentType(string fileName)
+    {
+        // Determine the content type based on the file's extension
+        string ext = Path.GetExtension(fileName).ToLowerInvariant();
+        switch (ext)
+        {
+            case ".jpg":
+            case ".jpeg":
+                return "image/jpeg";
+            case ".png":
+                return "image/png";
+            case ".pdf":
+                return "application/pdf";
+            default:
+                return "application/octet-stream"; // Default to binary data
+        }
+    }
 
 
 

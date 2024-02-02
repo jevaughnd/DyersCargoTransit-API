@@ -73,13 +73,16 @@ namespace DyersCargoTransit_API.Controllers
 
             //user
             var identityUser = await _userManager.FindByEmailAsync(user.Username);
-            
+
+            var lstRoles = GetRoles(user);
+
+
 
             if (result == true)
             {
                 var token = _authService.GenerateToken(user);
 
-                return Ok(new { status = "succes", message = "login succesful", data = token, user = identityUser });
+                return Ok(new { status = "succes", message = "login succesful", data = token, user = identityUser, roles = lstRoles});
             }
             return BadRequest(new { status = "failed", message = "login failed" });
         }
@@ -88,7 +91,15 @@ namespace DyersCargoTransit_API.Controllers
         //-------------------------------------------------------------------------------------------------
 
 
-
+        [HttpPost]
+        public List<string> GetRoles(AppUser user)
+        {
+            var lstRole = new List<string>();
+            var lUser = _userManager.FindByEmailAsync(user.Username).Result;
+            if (lUser != null)
+                lstRole = ((_userManager.GetRolesAsync(lUser))).Result.ToList();
+            return lstRole;
+        }
 
 
 

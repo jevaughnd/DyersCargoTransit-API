@@ -5,7 +5,9 @@ namespace DyersCargoTransit_API.Model
 {
     public class CustomerProfileDto
     {
-       
+
+        
+
         public string FullName { get; set; }
 
        

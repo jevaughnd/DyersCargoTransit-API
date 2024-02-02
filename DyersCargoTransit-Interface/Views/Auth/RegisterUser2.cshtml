@@ -1,0 +1,204 @@
+﻿@model DyersCargoTransit_Interface.Models.ViewModels.RegistrationVM
+
+@{
+    ViewData["Title"] = "RegisterUser2";
+}
+
+<h1>RegisterUser2</h1>
+
+<h4>RegistrationVM</h4>
+<hr />
+@*<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="RegisterUser2" class="RegForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DOB" class="control-label"></label>
+                <input asp-for="DOB" class="form-control" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Street" class="control-label"></label>
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Town" class="control-label"></label>
+                <input asp-for="Town" class="form-control" />
+                <span asp-validation-for="Town" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ParishId" class="control-label"></label>
+                <input asp-for="ParishId" class="form-control" />
+                <span asp-validation-for="ParishId" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+            <label asp-for="SelectedParishId" class="control-label"></label>
+            <input asp-for="SelectedParishId" class="form-control" />
+            <span asp-validation-for="SelectedParishId" class="text-danger"></span>
+            </div>*
+
+
+            <div class="form-group">
+                <label asp-for="ProfilePicture" class="control-label"></label>
+                <input asp-for="ProfilePicture" class="form-control" />
+                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Register 2 " class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+*@
+
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="RegisterUser2" class="RegForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AppUser.Username" class="control-label"></label>
+                <input asp-for="AppUser.Username" class="form-control" />
+                <span asp-validation-for="AppUser.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppUser.Password" class="control-label"></label>
+                <input asp-for="AppUser.Password" class="form-control" />
+                <span asp-validation-for="AppUser.Password" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="CustomerProfile.FullName" class="control-label"></label>
+                <input asp-for="CustomerProfile.FullName" class="form-control" />
+                <span asp-validation-for="CustomerProfile.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerProfile.EmailAddress" class="control-label"></label>
+                <input asp-for="CustomerProfile.EmailAddress" class="form-control" />
+                <span asp-validation-for="CustomerProfile.EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerProfile.PhoneNumber" class="control-label"></label>
+                <input asp-for="CustomerProfile.PhoneNumber" class="form-control" />
+                <span asp-validation-for="CustomerProfile.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerProfile.DOB" class="control-label"></label>
+                <input asp-for="CustomerProfile.DOB" class="form-control" />
+                <span asp-validation-for="CustomerProfile.DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerProfile.Street" class="control-label"></label>
+                <input asp-for="CustomerProfile.Street" class="form-control" />
+                <span asp-validation-for="CustomerProfile.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerProfile.Town" class="control-label"></label>
+                <input asp-for="CustomerProfile.Town" class="form-control" />
+                <span asp-validation-for="CustomerProfile.Town" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerProfile.ParishId" class="control-label"></label>
+                <input asp-for="CustomerProfile.ParishId" class="form-control" />
+                <span asp-validation-for="CustomerProfile.ParishId" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+            <label asp-for="SelectedParishId" class="control-label"></label>
+            <input asp-for="SelectedParishId" class="form-control" />
+            <span asp-validation-for="SelectedParishId" class="text-danger"></span>
+            </div>*@
+
+
+            <div class="form-group">
+                <label asp-for="CustomerProfile.ProfilePicture" class="control-label"></label>
+                <input asp-for="CustomerProfile.ProfilePicture" class="form-control" />
+                <span asp-validation-for="CustomerProfile.ProfilePicture" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Register 2 " class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+@*<!-- Your registration form fields for AppUser -->
+<form asp-action="Register2">
+    <!-- AppUser fields -->
+    <input asp-for="AppUser.Username" />
+    <input asp-for="AppUser.Password" />
+    <!-- ... other AppUser fields -->
+
+    <!-- Your CustomerProfile fields -->
+    <input asp-for="CustomerProfile.FullName" />
+    <input asp-for="CustomerProfile.EmailAddress" />
+    <!-- ... other CustomerProfile fields -->
+
+    <button type="submit">Register</button>
+</form>
+*@
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

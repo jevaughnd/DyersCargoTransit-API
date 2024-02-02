@@ -1,0 +1,113 @@
+﻿@model IEnumerable<DyersCargoTransit_Interface.Models.CustomerProfile>
+
+@{
+    ViewData["Title"] = "CustomerProfiles";
+}
+
+<partial name="_DashBoard" />
+
+
+
+
+
+<center> <h3>Customer Profiles</h3> </center>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParishId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfilePicture)
+            </th>
+            <th>
+                <p>
+                    <a asp-action="Create" class="btn btn-sm btn-success">
+                        Create New
+                        <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                    </a>
+                </p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Town)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParishId)
+            </td>
+            
+                <td>
+                    <div class="Img-In-Table">
+                        <a href="@item.ProfilePicture" target="_blank">
+                            <div class="Img-In-Table">
+                                <img style="height: 100" src="@item.ProfilePicture" />
+                            </div>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div class=" btn-group w-75">
+                        <!--Align buttons-->
+                        <a asp-action="EditFile" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success">
+                            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                        </a>
+
+                        <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

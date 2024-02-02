@@ -1,23 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
 namespace DyersCargoTransit_Interface.Models.ViewModels
 {
-    public class RegistrationVM
+    public class CustomerProfileVM
     {
         public int Id { get; set; }
-        public AppUser AppUser { get; set; }
-        public CustomerProfile CustomerProfile { get; set; }
+       
 
 
-        public string Username { get; set; }
-        public string Password { get; set; }
-
-
-        // Other properties for the customer profile...
      
+
         public string FullName { get; set; }
 
 
@@ -27,13 +21,13 @@ namespace DyersCargoTransit_Interface.Models.ViewModels
 
         public DateTime DOB { get; set; }
 
-  
+
         public string Street { get; set; }
 
-   
+
         public string Town { get; set; }
 
-        
+
 
 
         //parish
@@ -48,10 +42,7 @@ namespace DyersCargoTransit_Interface.Models.ViewModels
         public int SelectedParishId { get; set; }
 
 
-         public IFormFile? ProfilePictureFile { get; set; }
-
-
-
+        public IFormFile? ProfilePictureFile { get; set; }
 
     }
 }
