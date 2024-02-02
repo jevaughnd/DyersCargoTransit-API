@@ -38,77 +38,18 @@ namespace DyersCargoTransit_API.Controllers
 
         ////Original Register Works
 
-        //[HttpPost]
-        //[Route("register")]
-        //public async Task<IActionResult> Register(User user)
-        //{
-        //    if (await _authService.RegisterUser(user))
-        //    {
-        //        //assign default role Customer
-        //        var roles = new List<string> { "Customer" };
-        //        await _authService.AssignRoles(user.Username, roles);
-
-        //        return Ok(new { status = "succes", message = "registration succesful" });
-        //    }
-        //    return BadRequest(new { status = "fail", message = "registration failed" });
-        //}
-
-
-
-
-        //Suposed to Populate the CustomerProfile Feilds When Customer Registers
-
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegistrationModel registrationModel)
+        public async Task<IActionResult> Register(AppUser user)
         {
-            if (await _authService.RegisterUser(registrationModel.User))
+            if (await _authService.RegisterUser(user))
             {
+                //assign default role Customer
                 var roles = new List<string> { "Customer" };
-                await _authService.AssignRoles(registrationModel.User.Username, roles);
+                await _authService.AssignRoles(user.Username, roles);
 
-                var identityUser = await _userManager.FindByEmailAsync(registrationModel.User.Username);
-
-                if (identityUser != null)
-                {
-                    var existingCustomerProfile = _cxt.CustomerProfiles.FirstOrDefault(x => x.UserId == identityUser.Id);
-
-                    if (existingCustomerProfile != null)
-                    {
-                        existingCustomerProfile.FullName = registrationModel.CustomerProfile.FullName;
-                        existingCustomerProfile.EmailAddress = registrationModel.CustomerProfile.EmailAddress;
-                        existingCustomerProfile.PhoneNumber = registrationModel.CustomerProfile.PhoneNumber;
-                        existingCustomerProfile.DOB = registrationModel.CustomerProfile.DOB;
-                        existingCustomerProfile.Street = registrationModel.CustomerProfile.Street;
-                        existingCustomerProfile.Town = registrationModel.CustomerProfile.Town;
-                        existingCustomerProfile.ParishId = registrationModel.CustomerProfile.ParishId;
-                        existingCustomerProfile.ProfilePicture = registrationModel.CustomerProfile.ProfilePicture;
-
-                        _cxt.SaveChanges();
-                    }
-                    else
-                    {
-                        var newCustomerProfile = new CustomerProfile
-                        {
-                            UserId = identityUser.Id,
-                            FullName = registrationModel.CustomerProfile.FullName,
-                            EmailAddress = registrationModel.CustomerProfile.EmailAddress,
-                            PhoneNumber = registrationModel.CustomerProfile.PhoneNumber,
-                            DOB = registrationModel.CustomerProfile.DOB,
-                            Street = registrationModel.CustomerProfile.Street,
-                            Town = registrationModel.CustomerProfile.Town,
-                            ParishId = registrationModel.CustomerProfile.ParishId,
-                            ProfilePicture = registrationModel.CustomerProfile.ProfilePicture,
-                        };
-
-                        _cxt.CustomerProfiles.Add(newCustomerProfile);
-                        _cxt.SaveChanges();
-                    }
-                }
-
-                return Ok(new { status = "success", message = "registration successful" });
+                return Ok(new { status = "succes", message = "registration succesful" });
             }
-
             return BadRequest(new { status = "fail", message = "registration failed" });
         }
 
@@ -121,9 +62,12 @@ namespace DyersCargoTransit_API.Controllers
 
 
 
+
+
+
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(User user)
+        public async Task<IActionResult> Login(AppUser user)
         {
             var result = await _authService.LoginUser(user);
 

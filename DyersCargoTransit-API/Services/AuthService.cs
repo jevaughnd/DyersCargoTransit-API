@@ -21,7 +21,7 @@ namespace DyersCargoTransit_API.Services
         }
 
         //register
-        public async Task<bool> RegisterUser(User user)
+        public async Task<bool> RegisterUser(AppUser user)
         {
             var identityUser = new IdentityUser
             {
@@ -39,7 +39,7 @@ namespace DyersCargoTransit_API.Services
 
 
         //login----------------
-        public async Task<bool> LoginUser(User user)
+        public async Task<bool> LoginUser(AppUser user)
         {
             var identityUser = await userManager.FindByEmailAsync(user.Username);
             if (identityUser == null)
@@ -68,7 +68,7 @@ namespace DyersCargoTransit_API.Services
 
 
         //Generate Token-------------
-        public async Task<string> GenerateToken(User user)
+        public async Task<string> GenerateToken(AppUser user)
         {
 
             //--

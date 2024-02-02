@@ -14,10 +14,10 @@ namespace DyersCargoTransit_API.Model
 
         
 
-        public string UserId { get; set; }  // User ID associated with this profile
+        //public string UserId { get; set; }  // User ID associated with this profile
 
-        [ForeignKey("UserId")]
-        public IdentityUser User { get; set; }  // Navigation property to the associated user
+        //[ForeignKey("UserId")]
+        //public IdentityUser User { get; set; }  // Navigation property to the associated user
 
 
         // Other properties for the customer profile...

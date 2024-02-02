@@ -51,7 +51,7 @@ namespace DyersCargoTransit_API.Controllers
 
 
         //Create Record
-        [Authorize(Roles = "Admin")]
+       //Authorize(Roles = "Admin")]
         [HttpPost("CustomerPost")]
         public IActionResult CreateCustomer([FromBody] Customer values)
         {

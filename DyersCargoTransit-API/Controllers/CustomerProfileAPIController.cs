@@ -2,6 +2,7 @@
 using DyersCargoTransit_API.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Security.Claims;
 
@@ -16,51 +17,108 @@ public class CustomerProfileController : ControllerBase
         this._cxt = context;
     }
 
-    [Authorize(Roles = "Admin,Customer")]
-    [HttpGet("Profile")]
-    public IActionResult GetCustomerProfile()
+
+
+
+
+
+    //Finds Individual Record By Id
+    [HttpGet("{id}")]
+    public IActionResult GetCustomerProfileById(int id)
     {
-        // Retrieve the current user's ID (you might need to adjust this based on your authentication setup)
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var person = _cxt.CustomerProfiles.Include(p => p.Parish).FirstOrDefault(x => x.Id == id);
 
-        // Query the customer profile using the user ID
-        var customerProfile = _cxt.CustomerProfiles.FirstOrDefault(x => x.UserId == userId);
-
-        if (customerProfile == null)
+        if (person == null)
         {
             return NotFound();
         }
-
-        return Ok(customerProfile);
+        return Ok(person);
     }
 
 
 
-
-    [Authorize(Roles = "Admin,Customer")]
-    [HttpPut("Profile")]
-    public IActionResult UpdateCustomerProfile([FromBody] CustomerProfile profile)
+    //Create Record
+    //[Authorize(Roles = "Admin, Customer")]
+    [HttpPost("CustomerProfilePost")]
+    public IActionResult CreateCustomerProfile([FromBody] CustomerProfile values)
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var existingProfile = _cxt.CustomerProfiles.FirstOrDefault(x => x.UserId == userId);
-
-        if (existingProfile == null)
-        {
-            return NotFound();
-        }
-
-        existingProfile.FullName = profile.FullName;
-        existingProfile.EmailAddress = profile.EmailAddress;
-        existingProfile.PhoneNumber = profile.PhoneNumber;
-        existingProfile.DOB = profile.DOB;
-        existingProfile.Street = profile.Street;
-        existingProfile.Town = profile.Town;
-        existingProfile.ParishId = profile.ParishId;
-        existingProfile.ProfilePicture = profile.ProfilePicture;
-
+        _cxt.CustomerProfiles.Add(values);
         _cxt.SaveChanges();
-
-        return Ok(existingProfile);
+        return CreatedAtAction(nameof(GetCustomerProfileById), new { id = values.Id }, values);
     }
+
+
+ 
+
+
+
+
+
+
+
+    //=========================================================================================================================//
+    //PARISH END POINTS
+
+    //-----------------------
+    [HttpGet]
+    [Route("Parish")]
+    public IActionResult GetParishes()
+    {
+        var parItem = _cxt.Parishes.ToList();
+        if (parItem == null)
+        {
+            return BadRequest();
+        }
+        return Ok(parItem);
+    }
+
+
+    //-----------------------
+    //Finds Record where id is = to the result of the firstOrDefault query
+    [HttpGet]
+    [Route("Parish/{Id}")]
+    public IActionResult GetParishById(int id)
+    {
+        var parItem = _cxt.Parishes.FirstOrDefault(x => x.Id == id); //gets individual parish by Id
+        if (parItem == null)
+        {
+            return NotFound();
+        }
+        return Ok(parItem);
+    }
+
+
+    //-----------------------
+    [HttpPost]
+    [Route("ParishPost")]
+    public IActionResult CreateParish([FromBody] Parish values)
+    {
+        _cxt.Parishes.Add(values);
+        _cxt.SaveChanges();
+        return CreatedAtAction(nameof(GetParishById), new { id = values.Id }, values);
+    }
+
+
+    //-----------------------
+    [HttpPut]
+    [Route("ParishPut")]
+    public IActionResult UpdateParish(int id, [FromBody] Parish values)
+    {
+        var parItem = _cxt.Parishes.FirstOrDefault(x => x.Id == id);
+        if (parItem == null)
+        {
+            return NotFound();
+        }
+        _cxt.Parishes.Update(values);
+        _cxt.SaveChanges();
+        return CreatedAtAction(nameof(GetParishById), new { id = values.Id }, values);
+    }
+
+
+
+
+
+
+
 
 }
