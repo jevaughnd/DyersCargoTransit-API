@@ -37,11 +37,6 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("JevConnection"))
 //----------------------------------------  IDENTITY SERVICES  ----------------------------------------//
 
 
-//Add Identity User // Store -------
-//builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
-//{
-//    options.Password.RequiredLength = 5;
-//}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 //Add Identity User // Store -------
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -65,7 +60,7 @@ builder.Services.AddAuthorization(options =>
 
 
 
-//Authentication ------------------
+//---------------------------------------- Authentication ---------------------------------------------///
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -107,7 +102,7 @@ using (var scope = app.Services.CreateScope())
 
 
 
-//Enable the serving of static files: 
+//Enable the serving of static files/images: 
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath,

@@ -9,10 +9,6 @@ namespace DyersCargoTransit_Interface.Models
         public int Id { get; set; }
 
 
-
-
-
-        // Other properties for the customer profile...
         [Column(TypeName = "varchar(50)")]
         public string FullName { get; set; }
 

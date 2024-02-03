@@ -7,10 +7,6 @@ namespace DyersCargoTransit_Interface.Models.ViewModels
     public class CustomerProfileVM
     {
         public int Id { get; set; }
-       
-
-
-     
 
         public string FullName { get; set; }
 
@@ -43,6 +39,13 @@ namespace DyersCargoTransit_Interface.Models.ViewModels
 
 
         public IFormFile? ProfilePictureFile { get; set; }
+
+
+        //mod
+        public string? ProfilePicture { get; set; } = String.Empty;
+
+
+
 
     }
 }

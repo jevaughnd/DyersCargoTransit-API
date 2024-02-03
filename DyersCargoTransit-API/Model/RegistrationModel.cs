@@ -2,7 +2,7 @@
 {
     public class RegistrationModel
     {
-        public AppUser User { get; set; }
+        public AppUser AppUser { get; set; }
         public CustomerProfile CustomerProfile { get; set; }
     }
 }

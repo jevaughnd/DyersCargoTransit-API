@@ -3,6 +3,7 @@ using DyersCargoTransit_API.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Data;
 using System.Security.Claims;
 
@@ -110,11 +111,13 @@ public class CustomerProfileController : ControllerBase
 
 
    //UPDATE FILE
-
-
     [HttpPut("ProfilePut/{id}")]
     public async Task<IActionResult> EditFile(int id, [FromForm] CustomerProfileDto model)
     {
+
+        
+
+
         if (ModelState.IsValid)
         {
             var existingCustomerProfile = await _cxt.CustomerProfiles.FindAsync(id);
@@ -137,7 +140,7 @@ public class CustomerProfileController : ControllerBase
             existingCustomerProfile.ParishId = model.ParishId;
 
 
-            // Check if a new front image is provided
+            // Check if a new image is provided
             if (model.ProfilePictureFile != null && model.ProfilePictureFile.Length > 0)
             {
                 // Generate a unique file name for the  image
@@ -146,16 +149,20 @@ public class CustomerProfileController : ControllerBase
                 // Define the final file path on the server
                 var apiFilePath = Path.Combine("api", "server", "Updated-Imgs", uniqueFileName);
 
-                // Save the new image to the server, overwriting the existing front image
+                // Save the new image to the server, overwriting the existing image
                 using (var stream = new FileStream(apiFilePath, FileMode.Create))
                 {
                     await model.ProfilePictureFile.CopyToAsync(stream);
                 }
 
-                // Update the front image file path in the database
+                // Update the  image file path in the database
                 existingCustomerProfile.ProfilePicture = apiFilePath;
             }
 
+            //mod to see picture beside form
+            var baseUrl = "https://localhost:7005/Images/";
+            existingCustomerProfile.ProfilePicture = baseUrl + existingCustomerProfile.ProfilePicture;
+            //---
 
             // Save the changes to the database
             _cxt.CustomerProfiles.Update(existingCustomerProfile);

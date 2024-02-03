@@ -26,22 +26,18 @@ PW: RomarioU$er1
 
 -----------------------------------
 
-name format for testing register:
-employee2@mail.com
-EmployeeU$ser2
---------------
-{
-  "username": "employee2@mail.com",
-  "password": "EmployeeU$ser2"
-}
+
 
 AaliyahJames@gmail.com
 AaliyahJames123%
 
-================
-
+Credentials to test
+=======================
 admin@mail.com
 Admin123%
+
+customer@mail.com
+Customer123%
 ---------------------
 UserName = "customer",
 Email = "customer@mail.com",
@@ -52,9 +48,11 @@ malikcampbell@mail.com
 Malik123%
 ---------
 
-CustomerUser1@mail.com
-CustomerU$ser1
-----------
+Test out
+Romario Phillips
+romario@gmail.com
+Romario123%
 
+-------
 
 

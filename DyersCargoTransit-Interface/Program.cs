@@ -17,12 +17,6 @@ builder.Services.AddMvc().AddSessionStateTempDataProvider();
 
 
 
-//login controller
-builder.Services.AddHttpClient("LoginAPI", client =>
-{
-    client.BaseAddress = new Uri("https://localhost:7005/api/AuthAPI");
-});
-
 
 
 

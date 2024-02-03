@@ -17,20 +17,11 @@ namespace DyersCargoTransit_Interface.Models.ViewModels
 
 
         // Other properties for the customer profile...
-     
         public string FullName { get; set; }
-
-
         public string EmailAddress { get; set; }
-
         public string PhoneNumber { get; set; }
-
         public DateTime DOB { get; set; }
-
-  
         public string Street { get; set; }
-
-   
         public string Town { get; set; }
 
         
@@ -40,12 +31,12 @@ namespace DyersCargoTransit_Interface.Models.ViewModels
         [Display(Name = "Parish")]
         public int ParishId { get; set; }
 
-
         //Select value from DDL
         public List<SelectListItem>? ParishList { get; set; }
 
         //Selected DDL value
         public int SelectedParishId { get; set; }
+
 
 
          public IFormFile? ProfilePictureFile { get; set; }

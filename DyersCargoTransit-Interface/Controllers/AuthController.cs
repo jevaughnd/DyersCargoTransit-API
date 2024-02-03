@@ -14,14 +14,10 @@ namespace DyersCargoTransit_Interface.Controllers
         const string AUTH_URL = "https://localhost:7005/api/AuthAPI";
 
         const string CUS_PROFILE_URL = "https://localhost:7005/api/CustomerProfile";
-
         const string PARISH_ENDPOINT = "Parish";
-
-        // https://localhost:7005/api/CustomerProfile/CustomerProfiles
 
         const string SESSION_AUTH = "DyersCargoTransit-API";
 
-        const string Session_Auth2 = "LoginSession";
         const string Session_Role = "RoleSession";
 
 
@@ -98,7 +94,7 @@ namespace DyersCargoTransit_Interface.Controllers
         ///============
         /// REGISTER MODIFICATION
 
-        //REGISTER
+        //REGISTER - Creates New User and New Customer profile
         [HttpGet]
         public IActionResult RegisterUser()
         {
@@ -214,7 +210,7 @@ namespace DyersCargoTransit_Interface.Controllers
 
         //--------------------------------------
 
-        //LOGIN
+        //LOGIN - Registerd users are able to login with email & password
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -228,13 +224,12 @@ namespace DyersCargoTransit_Interface.Controllers
             return View();
         }
 
+
         [HttpGet] //gets Login Page
         public IActionResult Login()
         {
             return View();
         }
-
-
 
         [HttpPost]
         public async Task<IActionResult> Login(AppUser user, int Id)
@@ -281,19 +276,10 @@ namespace DyersCargoTransit_Interface.Controllers
                                     TempData["new-login"] = "Login Successful";
                                     HttpContext.Session.SetString(Session_Role, "Customer");
 
-                                    // Assuming you have the user's ID, replace "userId" with the actual ID.
                                     return RedirectToAction("Create", "Cargo");
-
-                                   
-
                                 }
 
                             }
-
-
-
-
-
                         }
                         else
                         {
@@ -325,18 +311,9 @@ namespace DyersCargoTransit_Interface.Controllers
 
 
 
-
-
-
-
-
-
-
-        
-
+        //Get all CustomerProfiles in a list
         public IActionResult CustomerProfiles()
         {
-
             var profileList = new List<CustomerProfile>();
             using (HttpClient client1 = new HttpClient())
             {
@@ -352,8 +329,6 @@ namespace DyersCargoTransit_Interface.Controllers
                     //Deserialise object from Json string
                     profileList = JsonConvert.DeserializeObject<List<CustomerProfile>>(data);
                 }
-
-
             }
             return View(profileList);
         }
@@ -365,18 +340,7 @@ namespace DyersCargoTransit_Interface.Controllers
 
 
 
-
-
-
-
-        //========================
-
-
-
-
-
-
-
+        //-------------------------------------------------------------------
         // EDIT FILE:GET
         [HttpGet]
         public IActionResult EditFile(int id)
@@ -409,12 +373,10 @@ namespace DyersCargoTransit_Interface.Controllers
                     customerProfile = JsonConvert.DeserializeObject<CustomerProfile>(data)!;
                 }
 
-                // DDL in VM
+                // properties from  ViewModel as needed
                 var viewModel = new CustomerProfileVM
                 {
                     Id = customerProfile.Id,
-                 
-                   
                     FullName = customerProfile.FullName,
                     EmailAddress = customerProfile.EmailAddress,
                     PhoneNumber = customerProfile.PhoneNumber,
@@ -424,9 +386,8 @@ namespace DyersCargoTransit_Interface.Controllers
                     SelectedParishId = customerProfile.ParishId,
                     ProfilePictureFile = customerProfileDto.ProfilePictureFile,
 
-                    // Additional properties from your ViewModel or Model as needed
 
-                    // parish
+                    // parishes
                     ParishList = ParishList.Select(Vclist => new SelectListItem
                     {
                         Text = Vclist.ParishName,
@@ -448,13 +409,10 @@ namespace DyersCargoTransit_Interface.Controllers
             client.DefaultRequestHeaders.Accept.Clear();
 
             // File upload logic
-
             if (!ModelState.IsValid) return View(customerProfileVM);
-
 
             var customer = new CustomerProfileDto
             {
-                
                 FullName = customerProfileVM.FullName,
                 EmailAddress = customerProfileVM.EmailAddress,
                 PhoneNumber = customerProfileVM.PhoneNumber,
@@ -501,9 +459,9 @@ namespace DyersCargoTransit_Interface.Controllers
                     formData.Add(new StringContent(customerProfileDto.ParishId.ToString()), "ParishId");
 
 
-                    // Additional properties from  ViewModel or Model as needed
+                    // Additional properties from  ViewModel as needed
 
-                    //profile img, // File upload logic
+                    //Profile Img,  File upload logic
                     if (customerProfileDto.ProfilePictureFile != null && customerProfileDto.ProfilePictureFile.Length > 0)
                     {
 

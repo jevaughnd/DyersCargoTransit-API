@@ -30,7 +30,7 @@ namespace DyersCargoTransit_API.Utils
         }
 
 
-        //admin
+        //Admin
         public static async Task SeedAdminUser(UserManager<IdentityUser> userManager)
         {
             var adminUser = await userManager.FindByNameAsync("admin");
@@ -56,8 +56,10 @@ namespace DyersCargoTransit_API.Utils
 
 
 
-        //repeat method for other roles
+        //Repeat method for other roles
 
+
+        //Customer
         public static async Task SeedCustomerUser(UserManager<IdentityUser> userManager)
         {
             var customerUser = await userManager.FindByNameAsync("customer");

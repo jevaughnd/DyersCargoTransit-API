@@ -4,12 +4,13 @@
     ViewData["Title"] = "EditFile";
 }
 
-<h1>EditFile</h1>
+<h1>Edit File</h1>
 
 <h4>Customer Profile VM</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+
+    <div class="container row-cols-md-3  d-flex justify-content-center align-items-center ">
         <form method="post" enctype="multipart/form-data" asp-action="EditFile" class="Razor-Form">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -49,16 +50,6 @@
                 <span asp-validation-for="Town" class="text-danger"></span>
             </div>
 
-            @*<div class="form-group">
-                <label asp-for="ParishId" class="control-label"></label>
-                <input asp-for="ParishId" class="form-control" />
-                <span asp-validation-for="ParishId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SelectedParishId" class="control-label"></label>
-                <input asp-for="SelectedParishId" class="form-control" />
-                <span asp-validation-for="SelectedParishId" class="text-danger"></span>
-            </div>*@
 
             <div class="form-group">
                 <label asp-for="ParishId" class="control-label"></label>
@@ -83,11 +74,14 @@
     </div>
 </div>
 
-<div class="VehicleSideImg">
-        <a href="@Model.ProfilePictureFile" target="_blank">
-            <img src="@Model.ProfilePictureFile" height="200" />
-        </a>
-    </div>
+
+<div class="ProfileDetail-Img">
+
+    <a href="@Model.ProfilePicture" target="_blank">
+        <img src="@Model.ProfilePicture" height="200" />
+    </a>
+</div>
+
 
 
 <div>

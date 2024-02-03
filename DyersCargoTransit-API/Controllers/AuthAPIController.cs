@@ -36,8 +36,8 @@ namespace DyersCargoTransit_API.Controllers
 
 
 
-        ////Original Register Works
-
+  
+        //Register
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register(AppUser user)
@@ -52,15 +52,6 @@ namespace DyersCargoTransit_API.Controllers
             }
             return BadRequest(new { status = "fail", message = "registration failed" });
         }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -88,9 +79,9 @@ namespace DyersCargoTransit_API.Controllers
         }
 
 
-        //-------------------------------------------------------------------------------------------------
+    
 
-
+        //Roles
         [HttpPost]
         public List<string> GetRoles(AppUser user)
         {
